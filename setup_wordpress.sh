@@ -39,7 +39,7 @@ service mysql restart > /dev/null
 
 ## move the WP System to /var/www/html/
 PATHWP="/root/wordpress.zip"
-echo "Enter the Name for DB "
+echo "Enter the Word Press Version like  '4.6' "
 read WPVersion
 curl https://de.wordpress.org/wordpress-$WPVersion-de_DE.zip -o $PATHWP
 unzip $PATHWP
