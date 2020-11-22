@@ -5,7 +5,7 @@ apt-get -y  install apache2 apache2-utils
 systemctl enable apache2
 systemctl start apache2
 
-apt-get install php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+apt-get -y install php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
 /etc/init.d/apache2 restart
 
 apt install -y curl
@@ -44,7 +44,7 @@ read WPVersion
 curl https://de.wordpress.org/wordpress-$WPVersion-de_DE.zip -o $PATHWP
 unzip $PATHWP
 cp -r /root/wordpress/* /var/www/html/
-chown -R www-data:www-data /var/www/html
+chown -R www-data:www-data /var/www/html/
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 sed -i -e "s/datenbankname_hier_einfuegen/$DBNAME/g" /var/www/html/wp-config.php
 sed -i -e "s/benutzername_hier_einfuegen/$MYSQL_ROOT/g" /var/www/html/wp-config.php
