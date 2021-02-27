@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Install LAMP, WordPress 
+### Install LAMP, WordPress
 apt-get -y  install apache2 apache2-utils
 systemctl enable apache2
 systemctl start apache2
@@ -19,7 +19,7 @@ apt-get -y install dirmngr
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 apt-get update
-echo "Enter the user name for DB "
+MYSQL_ROOT=root
 read  MYSQL_ROOT
 echo "Enter the password for DB "
 read MYSQL_PASS
@@ -43,7 +43,10 @@ echo "Enter the Word Press Version like  '4.6' "
 read WPVersion
 curl https://de.wordpress.org/wordpress-$WPVersion-de_DE.zip -o $PATHWP
 unzip $PATHWP
-cp -r /root/wordpress/* /var/www/html/
+cd /root/wordpress
+mv /root/wordpress /root/html
+cp -r /root/html/* /var/www/html
+
 chown -R www-data:www-data /var/www/html/
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 sed -i -e "s/datenbankname_hier_einfuegen/$DBNAME/g" /var/www/html/wp-config.php
@@ -55,8 +58,3 @@ find /var/www/html -type f -exec chmod 644 {} \;
 
 echo "Installation complete!!!!!!  Enjoy!!!!"
 ####
-
-
-
-
-
