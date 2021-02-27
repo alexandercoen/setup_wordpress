@@ -21,7 +21,7 @@ curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 apt-get update
 MYSQL_ROOT=root
 read  MYSQL_ROOT
-echo "Enter the password for DB "
+echo "Enter the password for DB_USER root "
 read MYSQL_PASS
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQL_PASS"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQL_PASS"
